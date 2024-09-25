@@ -16,7 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from website_canfel.views import mascota_listing, mascota_by_id
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('mascotas/', mascota_listing, name="mascota_listing"),
+    path("mascota/<int:id>/", mascota_by_id, name="mascota_by_id"),
 ]
