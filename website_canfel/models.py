@@ -21,7 +21,8 @@ class Propietario(models.Model):
 class Vacuna(models.Model):
     nombre = models.CharField(max_length=100)
     fecha_aplicacion = models.DateField()
-
+    fecha_revacunacion = models.DateField(null=True, blank=True)
+    descripcion = models.TextField(null=True, blank=True)
     def __str__(self):
         return self.nombre
 
@@ -82,6 +83,7 @@ class Desparasitacion(models.Model):
     observaciones = models.TextField(blank=True, null=True)
     mascota = models.ForeignKey('Mascota', on_delete=models.CASCADE)
     veterinario = models.ForeignKey('Veterinario', on_delete=models.CASCADE)
+    proxima_desparasitacion = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return f"Desparasitación de {self.mascota.nombre} el {self.fecha_aplicacion.strftime('%d/%m/%Y')}"
@@ -93,6 +95,7 @@ class Cirugia(models.Model):
     veterinario = models.ForeignKey('Veterinario', on_delete=models.CASCADE)
     mascota = models.ForeignKey('Mascota', on_delete=models.CASCADE)
     observaciones = models.TextField(blank=True, null=True)
-
+    fecha_retiracion_puntos = models.DateField(null=True, blank=True)
+    
     def __str__(self):
         return f"Cirugía de {self.mascota.nombre} el {self.fecha_cirugia.strftime('%d/%m/%Y')}"
